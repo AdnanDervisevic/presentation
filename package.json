@@ -11,7 +11,7 @@
     "react-dom": "^16.8.1",
     "react-scripts": "2.1.5",
     "typescript": "3.3.3",
-    "collector-portal-framework": "12.0.5"
+    "collector-portal-framework": "13.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
