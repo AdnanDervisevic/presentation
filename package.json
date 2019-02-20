@@ -7,12 +7,12 @@
     "@types/node": "11.9.3",
     "@types/react": "16.8.2",
     "@types/react-dom": "16.8.0",
-    "collector-portal-framework": "12.0.5",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
-    "typescript": "3.3.3"
+    "typescript": "3.3.3",
+    "collector-portal-framework": "13.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
