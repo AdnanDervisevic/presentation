@@ -1,65 +1,54 @@
 import * as React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import styled from 'collector-portal-framework';
-import { MainMenu, Footer, Logo } from './components';
+import { Footer, } from './components';
 import { PresentationView } from './views/Presentation';
 import { Aftonbladet } from './views/Aftonbladet';
+import { PortalContainer, PortalHeader, PortalMain } from 'collector-portal-framework/dist/components';
+import { MainMenuItem } from 'collector-portal-framework/dist/components/PortalHeader/MainMenu';
 
-const Container = styled.div(({ theme }) => ({
-    backgroundColor: theme.colors.offWhite,
-    display: 'flex',
+const logoImage = require('./components/icons/swedish-logo.svg')
 
-    [theme.breakpoints.mobileAndLower]: {
-        flexDirection: 'column',
+const menuIcons = {
+    house: require('./components/icons/house.svg'),
+    documents: require('./components/icons/documents.svg'),
+};
+
+const menuItems: MainMenuItem[] = [
+    {
+        path: '/presentation',
+        label: 'Översikt',
+        icon: menuIcons.house,
     },
-}));
-
-const Header = styled.header(({ theme }) => ({
-    width: 280,
-    display: 'flex',
-    flexDirection: 'column',
-    flexShrink: 0,
-    minHeight: '100vh',
-    background: theme.colors.sidebarBlue,
-    color: theme.colors.white,
-
-    [theme.breakpoints.mobileAndLower]: {
-        width: 'auto',
-        minHeight: 'auto',
+    {
+        path: '/aftonbladet',
+        label: 'Aftonbladet',
+        icon: menuIcons.documents,
     },
-}));
-
-const Main = styled.main(({ theme }) => ({
-    display: 'block',
-    width: '100%',
-    maxWidth: 1200,
-    minHeight: 250,
-    position: 'relative',
-    backgroundColor: theme.colors.white,
-    borderRight: `1px solid ${theme.colors.lightGray}`,
-}));
+];
 
 export default class App extends React.Component {
     render() {
         return (
-            <Container>
-                <Header>
-                    <Logo />
-                    <MainMenu />
-                    <Footer onlyInDesktop={true} />
-                </Header>
+            <PortalContainer>
+                <PortalHeader
+                    logoImage={logoImage}
+                    logoTarget=""
+                    siteName={"Presentation"}
+                    menuItems={menuItems}
+                    menuFooter={<Footer />}
+                />
 
-                <Main>
+                <PortalMain>
                     <Switch>
                         <Route path="/presentation" component={PresentationView} />
                         <Route path="/aftonbladet" component={Aftonbladet} />
 
                         <Redirect from={'/'} to={'/presentation'} />
                     </Switch>
-                </Main>
+                </PortalMain>
 
                 <Footer onlyInMobile={true} />
-            </Container>
+            </PortalContainer>
         );
     }
 }
