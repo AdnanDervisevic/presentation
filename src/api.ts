@@ -1,4 +1,4 @@
-// import { get } from "collector-portal-framework/dist/http";
+import axios from 'axios';
 
-// export const getCivilizations = (): Promise<Swaggger.Civilization[]> =>
-//   get(`https://age-of-empires-2-api.herokuapp.com/api/v1/civilizations`);
+export const getCivilizations = (): Promise<Swagger.CivilizationList> =>
+    axios.get(`https://age-of-empires-2-api.herokuapp.com/api/v1/civilizations`).then(response => response.data);
