@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageContainer, PageHeader, FetchHandler, ListItem } from 'collector-portal-framework/dist/components';
+import { PageContainer, PageHeader, FetchHandler, ListItem, TextLink } from 'collector-portal-framework/dist/components';
 import { getCivilizations } from '../api';
 import styled from 'collector-portal-framework';
 
@@ -22,12 +22,15 @@ export const AgeOfEmpires: React.FC = () => (
             <FetchHandler apiMethod={getCivilizations} errorText="Need more wood. Wololo!">
                 {response => (
                     <ListContainer>
-                        {response.civilizations!.map(civ => (
+                        <span>Gratefully fetched from </span>
+                        <TextLink href="https://age-of-empires-2-api.herokuapp.com/docs">Age of Empires II Api</TextLink>
+
+                        {response.civilizations!.map((civ, index) => (
                             <ListItem key={civ.id} item={{ title: civ.name, subTitle: civ.team_bonus, details: civ.expansion }}>
                                 <DetailsContainer>
                                     <ListContainer>
                                         {civ.civilization_bonus!.map(bonus => (
-                                            <ListItem item={{ title: bonus }} />
+                                            <ListItem key={response.civilizations!.length + index} item={{ title: bonus }} />
                                         ))}
                                     </ListContainer>
                                 </DetailsContainer>
