@@ -10,7 +10,7 @@ declare module Swagger {
         civilization_bonus?: Array<string>;
     }
     export interface CivilizationList {
-        civilizations?: Array<Civilization>;
+        civilizations: Array<Civilization>;
     }
     export interface Cost {
         Wood?: number;
@@ -42,7 +42,7 @@ declare module Swagger {
         blast_radius?: number;
     }
     export interface UnitList {
-        units?: Array<Unit>;
+        units: Array<Unit>;
     }
     export interface Structure {
         id?: number;
@@ -61,7 +61,7 @@ declare module Swagger {
         special?: Array<string>;
     }
     export interface StructureList {
-        structures?: Array<Structure>;
+        structures: Array<Structure>;
     }
     export interface Technology {
         id?: number;
@@ -75,7 +75,7 @@ declare module Swagger {
         applies_to?: Array<string>;
     }
     export interface TechnologyList {
-        technologies?: Array<Technology>;
+        technologies: Array<Technology>;
     }
     export interface NotFoundError {
         message?: string;

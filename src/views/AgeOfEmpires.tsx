@@ -9,7 +9,7 @@ const DetailsContainer = styled.div(({ theme }) => ({
     padding: 12,
 }));
 
-const ListContainer = styled.ul({
+const List = styled.ul({
     margin: 0,
     padding: 0,
 });
@@ -21,24 +21,27 @@ export const AgeOfEmpires: React.FC = () => (
         <PageContainer>
             <FetchHandler apiMethod={getCivilizations} errorText="Need more wood. Wololo!">
                 {response => (
-                    <ListContainer>
+                    <List>
                         <span>Gratefully fetched from </span>
                         <TextLink href="https://age-of-empires-2-api.herokuapp.com/docs">Age of Empires II Api</TextLink>
 
-                        {response.civilizations!.map((civ, index) => (
-                            <ListItem key={civ.id} item={{ title: civ.name, subTitle: civ.team_bonus, details: civ.expansion }}>
-                                <DetailsContainer>
-                                    <ListContainer>
-                                        {civ.civilization_bonus!.map(bonus => (
-                                            <ListItem key={response.civilizations!.length + index} item={{ title: bonus }} />
-                                        ))}
-                                    </ListContainer>
-                                </DetailsContainer>
-                            </ListItem>
-                        ))}
-                    </ListContainer>
+                        {response.civilizations.map((civ, index) => renderDetails(civ, response.civilizations, index))}
+                    </List>
                 )}
             </FetchHandler>
         </PageContainer>
     </>
 );
+
+const renderDetails = (civ: Swagger.Civilization, civilizations: Swagger.Civilization[], index: number): JSX.Element => {
+    return (
+        <ListItem key={civ.id} item={{ title: civ.name, subTitle: civ.team_bonus, details: civ.expansion }}>
+            <DetailsContainer>
+                <List>
+                    {civ.civilization_bonus &&
+                        civ.civilization_bonus.map(bonus => <ListItem key={civilizations.length + index} item={{ title: bonus }} />)}
+                </List>
+            </DetailsContainer>
+        </ListItem>
+    );
+};
