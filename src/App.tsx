@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import { Button, H1 } from "collector-portal-framework/dist/components";
+import {
+  Button,
+  H1,
+  ButtonGroup
+} from "collector-portal-framework/dist/components";
 import logo from "./logo.svg";
 import "./App.css";
 import styled from "collector-portal-framework";
 
 const Container = styled.div({
-  display: "flex"
+  display: "flex",
+  alignItems: "center"
 });
 
 const App: React.FC = () => {
@@ -19,17 +24,17 @@ const App: React.FC = () => {
         <p>Babby's first stateful componet</p>
 
         <Container>
-          <Button size="small" onClick={() => setCount(prev => prev - 1)}>
-            Minska
-          </Button>
+          <ButtonGroup style={{ height: "100%" }}>
+            <Button onClick={() => setCount(prev => prev - 1)}>Minska</Button>
+          </ButtonGroup>
 
-          <H1 style={{ margin: 16 }} centered>
+          <H1 style={{ margin: 16, minWidth: 50, textAlign: "center" }}>
             {count}
           </H1>
 
-          <Button size="small" onClick={() => setCount(prev => prev + 1)}>
-            Öka
-          </Button>
+          <ButtonGroup style={{ height: "100%" }}>
+            <Button onClick={() => setCount(prev => prev + 1)}>Öka</Button>
+          </ButtonGroup>
         </Container>
       </header>
     </div>
