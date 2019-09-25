@@ -33,15 +33,13 @@ export const AgeOfEmpires: React.FC = () => (
     </>
 );
 
-const renderDetails = (civ: Swagger.Civilization, civilizations: Swagger.Civilization[], index: number): JSX.Element => {
-    return (
-        <ListItem key={civ.id} item={{ title: civ.name, subTitle: civ.team_bonus, details: civ.expansion }}>
-            <DetailsContainer>
-                <List>
-                    {civ.civilization_bonus &&
-                        civ.civilization_bonus.map(bonus => <ListItem key={civilizations.length + index} item={{ title: bonus }} />)}
-                </List>
-            </DetailsContainer>
-        </ListItem>
-    );
-};
+const renderDetails = (civ: Swagger.Civilization, civilizations: Swagger.Civilization[], index: number): JSX.Element => (
+    <ListItem key={civ.id} item={{ title: civ.name, subTitle: civ.team_bonus, details: civ.expansion }}>
+        <DetailsContainer>
+            <List>
+                {civ.civilization_bonus &&
+                    civ.civilization_bonus.map(bonus => <ListItem key={civilizations.length + index} item={{ title: bonus }} />)}
+            </List>
+        </DetailsContainer>
+    </ListItem>
+);
